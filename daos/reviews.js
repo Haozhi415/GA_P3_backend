@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
+    recipe: {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe'
+    },
     username: {
         type: String,
         required: true
