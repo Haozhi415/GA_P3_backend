@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* base path: /reviews */
 
-// question should the ID be recipeId or just "id" as per the recipes route?
+// question should the ID be recipeId or just "id" as per the recipes route? I'm suggesting recipeId as per coded in my reviews section for clarity.
 // question 2, is it right to have a review route? or just combine all routes into 1 js file?
 // qn 3 lol, shld the base path be '/reviews' or something like '/:recipeId/reviews'
 // we definitely need to review routes again sorry D:< im not very sure about this part.
