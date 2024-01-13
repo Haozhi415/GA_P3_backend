@@ -14,7 +14,7 @@ router.get('/show/:id', usersController.getUser);
 router.post('/create', usersController.createUser);
 
 // Update a user profile
-// router.patch('/update/:id', usersController.updateUser);
+router.patch('/update/:id', usersController.updateUser); 
 
 // Delete a user profile
 // router.delete('/delete/:id', usersController.deleteUser);

@@ -3,7 +3,8 @@ const modelUsers = require('../models/users');
 module.exports = {
     getAllUsers,
     getUser,
-    createUser
+    createUser,
+    updateUser
 }
 
 async function getAllUsers(req, res) {
@@ -30,5 +31,15 @@ async function createUser(req, res) {
     } catch(err) {
         console.log(err);
         res.status(500).json({ errorMsg: err.message });
+    }
+}
+
+async function updateUser(req, res) {
+    try {
+        const updatedProfile = await modelUsers.updateUser(req.body);
+        res.status(200).json(updatedProfile);
+    } catch(err) {
+        console.log(error);
+        res.status(500).json({ errorMsg: error.message });
     }
 }

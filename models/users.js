@@ -3,7 +3,8 @@ const daoUsers = require("../daos/users");
 module.exports = {
     getAllUsers,
     getUser,
-    createUser
+    createUser,
+    updateUser
 }
 
 function getAllUsers(queryFields) {
@@ -26,3 +27,8 @@ async function createUser(body) {
     const newUser = await daoUsers.create(body);
     return { success: true, data: newUser };
 }
+
+async function updateUser(id, profile) {
+    const updatedProfile = await daoRecipes.findByIdAndUpdate(id, profile, { new: true });
+    return updatedProfile;
+}   
