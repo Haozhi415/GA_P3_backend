@@ -4,7 +4,8 @@ module.exports = {
     getAllUsers,
     getUser,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
 
 async function getAllUsers(req, res) {
@@ -42,6 +43,16 @@ async function updateUser(req, res) {
     try {
         const updatedProfile = await modelUsers.updateUser(req.params.id, req.body);
         res.status(200).json(updatedProfile);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
+}
+
+async function deleteUser(req, res) {
+    try {
+       await modelUsers.deleteUser(req.params.id);
+       res.status(200).json({ message: "Recipe deleted successfully." });
     } catch(err) {
         console.log(err);
         res.status(500).json({ errorMsg: err.message });

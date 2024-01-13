@@ -4,7 +4,8 @@ module.exports = {
     getAllUsers,
     getUser,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
 
 function getAllUsers(queryFields) {
@@ -47,3 +48,7 @@ async function updateUser(id, profile) {
     const updatedProfile = await daoUsers.findByIdAndUpdate(id, profile, { new: true });
     return updatedProfile;
 }   
+
+async function deleteUser(id) {
+    await daoUsers.findByIdAndDelete(id);
+}
