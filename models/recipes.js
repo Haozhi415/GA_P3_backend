@@ -86,7 +86,7 @@ async function getAllRecipes(query) {
 
 
             return {
-                recipe_id: recipe._id,
+                _id: recipe._id,
                 user: recipe.user,
                 title: recipe.title,
                 tags: recipe.tags,
@@ -113,7 +113,7 @@ async function getOneRecipe(id) {
         const recipe = await daoRecipes.findById(id);
 
         return {
-            recipe_id: recipe._id,
+            _id: recipe._id,
             user: recipe.user,
             title: recipe.title,
             tags: recipe.tags,

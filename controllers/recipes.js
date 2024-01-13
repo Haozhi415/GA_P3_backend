@@ -59,6 +59,8 @@ async function updateRecipe(req, res) {
 
     try {
         updatedRecipe = await modelRecipes.updateRecipe(req.params.id, req.body);
+
+        // res.status(200) is the status code for "OK".
         res.status(200).json(updatedRecipe);
     } catch (error) {
         console.log(error);
