@@ -13,13 +13,13 @@ var router = express.Router();
 router.get('/show/:recipeId', reviewsController.getAllReviews);
 // router.get('/show/:recipeId/sortedByStars', reviewsController.getReviewsSortedByStars);
 
-// Create a recipe.
+// Create a review.
 router.post('/create/:recipeId', reviewsController.createReview);
 
-// Update a recipe.
+// Update a review.
 router.patch('/update/:reviewId', reviewsController.updateReview);
 
-// Delete a recipe.
+// Delete a review.
 router.delete('/delete/:reviewId', reviewsController.deleteReview);
 
 module.exports = router;
