@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+/* SAMPLE USER OBJECT FOR POSTMAN TESTING
+{
+    "name": "Mr Postman",
+    "email": "mrpostman@gmail.com",
+    "password": "password"
+}
+*/
+
 const userSchema = new Schema({
     name: {
         type: String,
