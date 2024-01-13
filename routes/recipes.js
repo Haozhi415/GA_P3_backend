@@ -7,6 +7,9 @@ var router = express.Router();
 // Get all recipes that match the query.
 router.get('/show', recipesController.getAllRecipes);
 
+// Get one recipe that matches the query.
+router.get('/show/:id', recipesController.getOneRecipe);
+
 // Create a recipe.
 router.post('/create', recipesController.createRecipe);
 

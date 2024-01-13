@@ -2,6 +2,7 @@ const modelRecipes = require("../models/recipes")
 
 module.exports = {
     getAllRecipes,
+    getOneRecipe,
     createRecipe,
     updateRecipe,
     deleteRecipe,
@@ -15,6 +16,21 @@ async function getAllRecipes(req, res) {
 
         // Send the flights array to the client.
         res.json({ recipes: recipes });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ errorMsg: error.message })
+    }
+}
+
+
+async function getOneRecipe(req, res) {
+
+    try {
+        // recipe here is defined as a recipe object that matches the query.
+        const recipe = await modelRecipes.getOneRecipe(req.params.id);
+
+        // Send the recipe object to the client.
+        res.json({ recipe: recipe });
     } catch (error) {
         console.log(error);
         res.status(500).json({ errorMsg: error.message })

@@ -7,6 +7,7 @@ module.exports = {
     createRecipe,
     updateRecipe,
     deleteRecipe,
+    getOneRecipe,
 };
 
 /* SAMPLE RECIPE OBJECT FOR POSTMAN TESTING
@@ -102,6 +103,35 @@ async function getAllRecipes(query) {
         throw new Error(error.message || "An error occurred");
     }
 }
+
+
+// Get one recipe that matches the query.
+async function getOneRecipe(id) {
+
+    try {
+        // recipe is defined as a recipe object that matches the query.
+        const recipe = await daoRecipes.findById(id);
+
+        return {
+            recipe_id: recipe._id,
+            user: recipe.user,
+            title: recipe.title,
+            tags: recipe.tags,
+            ingredients: recipe.ingredients,
+            preptime: recipe.preptime,
+            instructions: recipe.instructions,
+            picture_url: recipe.picture_url,
+            difficulty: recipe.difficulty,
+            reviews: recipe.reviews,
+
+        };
+    } catch (error) {
+        console.log(error);
+        throw new Error(error.message || "An error occurred");
+    }
+}
+
+
 
 
 // Create a new recipe.
