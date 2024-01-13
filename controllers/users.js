@@ -3,7 +3,8 @@ const modelUsers = require('../models/users');
 module.exports = {
     getAllUsers,
     getUser,
-    createUser
+    createUser,
+    updateUser
 }
 
 async function getAllUsers(req, res) {
@@ -16,9 +17,13 @@ async function getAllUsers(req, res) {
 }
 
 async function getUser(req, res) {
-    res.json({
-        user: modelUsers.getUser(req.params.id)
-    })
+    try {
+        const user = await modelUsers.getUser(req.params.id);
+        res.json({ user: user });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
 }
 
 async function createUser(req, res) {
@@ -27,6 +32,16 @@ async function createUser(req, res) {
         
         res.status(201).json(userData);
         console.log(userData);
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
+}
+
+async function updateUser(req, res) {
+    try {
+        const updatedProfile = await modelUsers.updateUser(req.params.id, req.body);
+        res.status(200).json(updatedProfile);
     } catch(err) {
         console.log(err);
         res.status(500).json({ errorMsg: err.message });
