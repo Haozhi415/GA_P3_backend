@@ -24,6 +24,8 @@ async function getUser(req, res) {
 async function createUser(req, res) {
     try {
         const userData = await modelUsers.createUser(req.body);
+        
+        res.status(201).json(userData);
         console.log(userData);
     } catch(err) {
         console.log(err);
