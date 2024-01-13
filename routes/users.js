@@ -1,6 +1,6 @@
 var express = require('express');
 var usersController = require('../controllers/users');
-var router = express.Router;
+var router = express.Router();
 
 // base path: /users
 
@@ -14,7 +14,9 @@ router.get('/show/:id', usersController.getUser);
 router.post('/create', usersController.createUser);
 
 // Update a user profile
-router.patch('/update/:id', usersController.updateUser);
+// router.patch('/update/:id', usersController.updateUser);
 
 // Delete a user profile
-router.delete('/delete/:id', usersController.deleteUser);
+// router.delete('/delete/:id', usersController.deleteUser);
+
+module.exports = router;
