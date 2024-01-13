@@ -17,9 +17,13 @@ async function getAllUsers(req, res) {
 }
 
 async function getUser(req, res) {
-    res.json({
-        user: modelUsers.getUser(req.params.id)
-    })
+    try {
+        const user = await modelUsers.getUser(req.params.id);
+        res.json({ user: user });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
 }
 
 async function createUser(req, res) {
@@ -39,7 +43,7 @@ async function updateUser(req, res) {
         const updatedProfile = await modelUsers.updateUser(req.body);
         res.status(200).json(updatedProfile);
     } catch(err) {
-        console.log(error);
-        res.status(500).json({ errorMsg: error.message });
+        console.log(err);
+        res.status(500).json({ errorMsg: err.message });
     }
 }

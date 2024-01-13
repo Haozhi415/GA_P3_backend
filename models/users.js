@@ -11,9 +11,24 @@ function getAllUsers(queryFields) {
     return daoUsers.find(queryFields);
 }
 
-function getUser(id) {
-    id = parseInt(id);
-    return daoUsers.find((user) => user.id === id);
+async function getUser(id) {
+    try {
+        const user = await daoUsers.findById(id);
+
+        return {
+            user_id: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            recipes: user.recipes,
+            bio: user.bio,
+            reviews: user.reviews,
+            favourites: user.favourites
+        }
+    } catch(err) {
+        console.log(err);
+        throw new Error(err.message || "An error occurred");
+    }
 }
 
 async function createUser(body) {
@@ -29,6 +44,6 @@ async function createUser(body) {
 }
 
 async function updateUser(id, profile) {
-    const updatedProfile = await daoRecipes.findByIdAndUpdate(id, profile, { new: true });
+    const updatedProfile = await daoUsers.findByIdAndUpdate(id, profile, { new: true });
     return updatedProfile;
 }   
