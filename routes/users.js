@@ -17,6 +17,6 @@ router.post('/create', usersController.createUser);
 router.patch('/update/:id', usersController.updateUser); 
 
 // Delete a user profile
-// router.delete('/delete/:id', usersController.deleteUser);
+router.delete('/delete/:id', usersController.deleteUser);
 
 module.exports = router;
