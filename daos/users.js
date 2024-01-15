@@ -29,6 +29,9 @@ const userSchema = new Schema({
     bio: {
         type: String
     },
+    profilePicUrl: {
+        type: String
+    },
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review'
