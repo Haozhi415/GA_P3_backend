@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var recipesRouter = require('./routes/recipes');
-var usersRouter = require('./routes/users');
+
 
 require("dotenv").config();
 require("./client/mongo");
@@ -22,6 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/recipes', recipesRouter);
-app.use('/users', usersRouter);
+
 
 module.exports = app;
