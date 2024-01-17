@@ -29,7 +29,7 @@ const recipeSchema = new Schema({
     },
 
     instructions: {
-        type: String,
+        type: [String],
         default: null
     },
 
