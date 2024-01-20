@@ -7,10 +7,21 @@ const Schema = mongoose.Schema;
     "email": "mrpostman@gmail.com",
     "password": "password"
 }
+{
+    "firstName": "Jordon",
+    "lastName": "Ezra King",
+    "email": "jordonezraking@postman.com",
+    "password": "iamjorDOne",
+    "bio": "Jordon Ezra King is a chef and storyteller."
+}
 */
 
 const userSchema = new Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -27,6 +38,9 @@ const userSchema = new Schema({
         ref: 'Recipe'
     }],
     bio: {
+        type: String
+    },
+    profilePicUrl: {
         type: String
     },
     reviews: [{
