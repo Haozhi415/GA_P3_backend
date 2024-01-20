@@ -52,7 +52,7 @@ async function updateUser(req, res) {
 async function deleteUser(req, res) {
     try {
        await modelUsers.deleteUser(req.params.id);
-       res.status(200).json({ message: "Recipe deleted successfully." });
+       res.status(200).json({ message: "User deleted successfully." });
     } catch(err) {
         console.log(err);
         res.status(500).json({ errorMsg: err.message });
