@@ -59,7 +59,6 @@ async function getAllRecipes(query) {
                 conditions.push({ title: { $regex: term, $options: 'i' } });
                 conditions.push({ tags: { $regex: term, $options: 'i' } });
                 conditions.push({ ingredients: { $regex: term, $options: 'i' } });
-                conditions.push({ difficulty: { $regex: term, $options: 'i' } });
                 // Add more fields as needed
             });
         }
