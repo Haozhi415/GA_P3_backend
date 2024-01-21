@@ -37,7 +37,7 @@ async function getUser(id) {
 
 async function getLoginDetails(queryFields) {
     const loginFields = {
-      name : 1,
+      firstName : 1,
       salt: 1,
       iterations: 1
     } 
@@ -62,15 +62,20 @@ async function loginUser(body) {
     if (user == null || Object.keys(user).length == 0) {
       return {success: false, error: "Invalid email/password"};
     }
+    console.log("user:", user);
     
     const jwtPayload = {
-      user: user.name,
+      user: user.firstName,
       email: user.email,
       is_admin: user.is_admin
     };
 
+    console.log("jwtPayload:", jwtPayload);
+
     const token = utilSecurity.createJWT(jwtPayload);
+    console.log("token:", token);
     const expiry = utilSecurity.getExpiry(token);
+    console.log("expiry:", expiry);
     daoUsers.updateOne({"email": body.email}, {token: token, expire_at: expiry})
     return {success: true, data: token}
 }

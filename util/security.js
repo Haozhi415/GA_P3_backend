@@ -7,12 +7,16 @@ module.exports = {
 }
 
 function createJWT(payload) {
-    return jwt.sign(
-        // data payload
-        { payload },
-        process.env.SECRET,
-        { expiresIn: "24h" }
-    );
+    try {
+        return jwt.sign(
+            // data payload
+            { payload },
+            process.env.SECRET,
+            { expiresIn: "24h" }
+        );
+    } catch(err) {
+        console.error(err);
+    }
 }
 
 function getExpiry(token) {
