@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+var securityMiddleware = require('./middlewares/security');
+
 var recipesRouter = require('./routes/recipes');
 var usersRouter = require('./routes/users');
 var reviewsRouter = require('./routes/reviews');
@@ -20,7 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors());
+app.use(securityMiddleware.checkJWT);
 
 app.use('/recipes', recipesRouter);
 app.use('/users', usersRouter);
