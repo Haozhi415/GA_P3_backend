@@ -3,6 +3,8 @@ const modelUsers = require('../models/users');
 module.exports = {
     getAllUsers,
     getUser,
+    getLoginDetails,
+    loginUser,
     createUser,
     updateUser,
     deleteUser
@@ -23,6 +25,33 @@ async function getUser(req, res) {
         res.json({ user: user });
     } catch(err) {
         console.log(err);
+        res.status(500).json({ errorMsg: err.message });
+    }
+}
+
+async function getLoginDetails(req, res) {
+    try {
+        const loginDetails = await modelUsers.getLoginDetails(req.query);
+        if (loginDetails.success != true) {
+            res.status(400).json({errorMsg: loginDetails.error});
+            return
+        }
+        res.json(loginDetails.data);
+    } catch (err) {
+        res.status(500).json({ errorMsg: err.message });
+    }
+}
+
+async function loginUser(req, res) {
+    try {
+        const token = await modelUsers.loginUser(req.body);
+        console.log(token);
+        if (!token.success) {
+          res.status(400).json({errorMsg: token.error});
+          return 
+        }
+        res.json(token.data);
+    } catch (err) {
         res.status(500).json({ errorMsg: err.message });
     }
 }

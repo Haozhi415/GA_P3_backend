@@ -50,7 +50,25 @@ const userSchema = new Schema({
     favourites: [{
         type: Schema.Types.ObjectId,
         ref: 'Recipe'
-    }]
+    }],
+    salt: {
+      type: String,
+      required: true,
+    },
+    iterations: {
+      type: Number,
+      required: true,
+    },
+    token: {
+      type: String
+    },
+    expire_at: {
+      type: Number
+    },  
+    is_admin: {
+      type: Boolean,
+      default: false
+    }
 }, 
     {
     timestamps: true

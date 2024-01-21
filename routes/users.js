@@ -10,6 +10,10 @@ router.get('/show', usersController.getAllUsers);
 // Show particular user profile
 router.get('/show/:id', usersController.getUser);
 
+// User Login
+router.get("/login", usersController.getLoginDetails);
+router.post("/login", usersController.loginUser);
+
 // Create a user profile
 router.post('/create', usersController.createUser);
 
