@@ -1,6 +1,5 @@
 const daoRecipes = require("../daos/recipes");
 const daoReviews = require("../daos/reviews");
-const daoUsers = require("../daos/users");
 
 module.exports = {
   getRecipeReviewsByRecipeId,
