@@ -5,9 +5,11 @@ module.exports = {
   createReview,
   updateReview,
   deleteReview,
+  getAllReviews,
+  getUserReviews,
 };
 
-// Read
+// Read Reviews by recipeId
 
 async function getRecipeReviews(req, res) {
   try {
@@ -21,13 +23,42 @@ async function getRecipeReviews(req, res) {
   }
 }
 
+// Read Reviews by userId
+
+async function getUserReviews(req, res) {
+    try {
+      const userId = req.params.userId;
+      const reviews = await modelReviews.getRecipeReviewsByUserId(userId);
+  
+      res.status(200).json(reviews);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ errorMsg: error.message });
+    }
+  }
+
+  // Read All Reviews (admin user)
+
+async function getAllReviews(req, res) {
+    try {
+      const reviews = await modelReviews.getAllReviews();
+  
+      res.status(200).json(reviews);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ errorMsg: error.message });
+    }
+  }
+
 // Create a review based on recipe
 
 async function createReview(req, res) {
   try {
     const review = await modelReviews.createReview(
+      req.body.user, // userId is passed in the request body FOR TESTING ONLY
       req.params.recipeId,
       req.body
+
     );
     res.status(201).json(review);
   } catch (error) {
