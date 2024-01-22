@@ -33,6 +33,7 @@ async function createReview(userId, recipeId, reviewData) {
     rating: reviewData.rating,
     content: reviewData.content,
     images: reviewData.images,
+    recipeTitle: recipe.title,
   });
 
   // Next the following adds the _id of the newly created review to the recipe's review array.
