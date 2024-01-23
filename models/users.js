@@ -21,7 +21,8 @@ async function getUser(id) {
 
         return {
             user_id: user._id,
-            name: user.name,
+            firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email,
             password: user.password,
             recipes: user.recipes,
