@@ -8,7 +8,10 @@ var router = express.Router();
 router.get("/show/:recipeId", reviewsController.getRecipeReviews);
 
 // Get all reviews by a user.
-// router.get('/show/:userId', reviewsController.getUserReviews);
+router.get('/user/:userId', reviewsController.getUserReviews);
+
+// Get all reviews (admin user).
+router.get("/admin/show", reviewsController.getAllReviews);
 
 // Create a review for a recipe.
 router.post("/create/:recipeId", reviewsController.createReview);

@@ -6,13 +6,15 @@ module.exports = {
   createReview,
   updateReview,
   deleteReview,
+  getRecipeReviewsByUserId,
+  getAllReviews,
 };
 
 // Create a review for a recipe via the recipeId.
 // recipeId is req.params.recipeId from controllers.
 // reviewData is req.body from controllers.
 // to pass in userId in future
-async function createReview(recipeId, reviewData) {
+async function createReview(userId, recipeId, reviewData) {
   // First find the recipe with the given ID
   // The result is stored in the "recipe" variable.
   const recipe = await daoRecipes.findById(recipeId);
@@ -26,11 +28,12 @@ async function createReview(recipeId, reviewData) {
   // Then create a new review with the provided data (following schema in daos).
   const review = await daoReviews.create({
     recipe: recipeId,
-    //  username: userId,
+    user: userId,
     title: reviewData.title,
     rating: reviewData.rating,
     content: reviewData.content,
     images: reviewData.images,
+    recipeTitle: recipe.title,
   });
 
   // Next the following adds the _id of the newly created review to the recipe's review array.
@@ -83,7 +86,7 @@ async function getRecipeReviewsByRecipeId(recipeId) {
   const getRecipeReviews = await daoReviews.find({ recipe: recipeId });
 
   if (!getRecipeReviews || getRecipeReviews.length === 0) {
-    return (message = "No reviews available.");
+    return (message = "Recipe has no reviews available.");
   }
   return getRecipeReviews;
 }
@@ -116,3 +119,23 @@ async function updateReview(reviewId, reviewData) {
     return { message: "Review updated successfully." };
   }
 }
+
+// Get all reviews for a user by userId
+async function getRecipeReviewsByUserId(userId) {
+  const getUserReviews = await daoReviews.find({ user: userId });
+  
+  if (!getUserReviews || getUserReviews.length === 0) {
+    return (message = "User has not made any reviews.");
+  }
+  return getUserReviews;
+}
+  
+  // Get all reviews (admin user)
+  async function getAllReviews() {
+    const getAllReviews = await daoReviews.find({});
+  
+    if (!getAllReviews || getAllReviews.length === 0) {
+      return (message = "No reviews available.");
+    }
+    return getAllReviews;
+  }
