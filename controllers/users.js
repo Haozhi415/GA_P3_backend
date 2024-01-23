@@ -5,6 +5,7 @@ module.exports = {
     getUser,
     getLoginDetails,
     loginUser,
+    logoutUser,
     createUser,
     updateUser,
     deleteUser
@@ -54,6 +55,19 @@ async function loginUser(req, res) {
     } catch (err) {
         res.status(500).json({ errorMsg: err.message });
     }
+}
+
+async function logoutUser(req, res) {
+  try {
+      const result = await modelUsers.logoutUser(req.body);
+      if (!result.success) {
+        res.status(400).json({errorMsg: result.error})
+        return 
+      }
+      res.json(result.data)
+  } catch (err) {
+      res.status(500).json({ errorMsg: err.message });
+  }
 }
 
 async function createUser(req, res) {

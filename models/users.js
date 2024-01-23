@@ -6,6 +6,7 @@ module.exports = {
     getUser,
     getLoginDetails,
     loginUser,
+    logoutUser,
     createUser,
     updateUser,
     deleteUser
@@ -20,7 +21,7 @@ async function getUser(id) {
         const user = await daoUsers.findById(id);
 
         return {
-            user_id: user._id,
+            _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
@@ -79,6 +80,13 @@ async function loginUser(body) {
     console.log("expiry:", expiry);
     daoUsers.updateOne({"email": body.email}, {token: token, expire_at: expiry})
     return {success: true, data: token}
+}
+
+async function logoutUser(body) {
+  if (!body.hasOwnProperty('email')) {
+    return {success: false, error: "missing email"};
+  }
+  daoUser.updateOne({"email": body.email}, {token: null, expire_at: null})
 }
 
 async function createUser(body) {
