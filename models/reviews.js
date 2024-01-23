@@ -14,7 +14,7 @@ module.exports = {
 // recipeId is req.params.recipeId from controllers.
 // reviewData is req.body from controllers.
 // to pass in userId in future
-async function createReview(userId, recipeId, reviewData) {
+async function createReview(userId, recipeId, reviewData, user) {
   // First find the recipe with the given ID
   // The result is stored in the "recipe" variable.
   const recipe = await daoRecipes.findById(recipeId);
@@ -34,6 +34,8 @@ async function createReview(userId, recipeId, reviewData) {
     content: reviewData.content,
     images: reviewData.images,
     recipeTitle: recipe.title,
+    userFirstName: user.firstName, // TESTING
+    userLastName: user.lastName, // TESTING
   });
 
   // Next the following adds the _id of the newly created review to the recipe's review array.

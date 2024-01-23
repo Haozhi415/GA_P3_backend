@@ -1,4 +1,5 @@
 const modelReviews = require("../models/reviews");
+const daoUsers = require("../daos/users");
 
 module.exports = {
   getRecipeReviews,
@@ -54,11 +55,18 @@ async function getAllReviews(req, res) {
 
 async function createReview(req, res) {
   try {
-    const review = await modelReviews.createReview(
-      req.body.user, // userId is passed in the request body FOR TESTING ONLY
-      req.params.recipeId,
-      req.body
+    const userId = req.body.user; // Assuming userId is the user ID
+    const user = await daoUsers.findById(userId); // fetch user details
 
+    if (!user) {
+      return res.status(404).json({ errorMsg: "User not found." });
+    }
+
+    const review = await modelReviews.createReview(
+      userId, // userId is passed in the request body FOR TESTING ONLY
+      req.params.recipeId,
+      req.body,
+      user
     );
     res.status(201).json(review);
   } catch (error) {
