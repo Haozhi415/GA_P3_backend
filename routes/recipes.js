@@ -10,6 +10,9 @@ router.get('/show', recipesController.getAllRecipes);
 // Get one recipe that matches the query.
 router.get('/show/:id', recipesController.getOneRecipe);
 
+// Get all recipes created by a user.
+router.get('/user/:userId', recipesController.getUserRecipes);
+
 // Create a recipe.
 router.post('/create', recipesController.createRecipe);
 

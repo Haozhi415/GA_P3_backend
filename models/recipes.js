@@ -7,6 +7,7 @@ module.exports = {
   updateRecipe,
   deleteRecipe,
   getOneRecipe,
+  getUserRecipes,
 };
 
 /* SAMPLE RECIPE OBJECT FOR POSTMAN TESTING
@@ -154,3 +155,15 @@ async function deleteRecipe(id) {
     throw new Error(error.message || "An error occurred");
   }
 }
+
+
+// Get all recipes created by a user.
+async function getUserRecipes(userId) {
+  const getUserRecipes = await daoRecipes.find({ user: userId });
+
+  if (!getUserRecipes || getUserRecipes.length === 0) {
+    return (message = "User has not created any recipes.");
+  }
+  return getUserRecipes;
+}
+  
