@@ -1,5 +1,6 @@
 var express = require('express');
 var usersController = require('../controllers/users');
+var securityMiddleware = require('../middlewares/security');
 var router = express.Router();
 
 // base path: /users
@@ -13,6 +14,8 @@ router.get('/show/:id', usersController.getUser);
 // User Login
 router.get("/login", usersController.getLoginDetails);
 router.post("/login", usersController.loginUser);
+
+router.post("/logout", securityMiddleware.checkPermission, usersController.logoutUser);
 
 // Create a user profile
 router.post('/create', usersController.createUser);
