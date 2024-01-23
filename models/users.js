@@ -20,7 +20,7 @@ async function getUser(id) {
         const user = await daoUsers.findById(id);
 
         return {
-            user_id: user._id,
+            _id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
