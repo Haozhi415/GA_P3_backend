@@ -9,7 +9,7 @@ const reviewSchema = new Schema(
       required: true,
     },
     recipeTitle: {
-      type: String, // New field for recipe title
+      type: String,
     },
     user: {
       type: Schema.Types.ObjectId,
@@ -18,6 +18,12 @@ const reviewSchema = new Schema(
       // default: function () {
       //     // Assuming req.user contains the decoded user information
       //     return req.user._id;
+    },
+    userFirstName: {
+      type: String,
+    },
+    userLastName: {
+      type: String,
     },
     title: {
       type: String,
