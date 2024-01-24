@@ -68,6 +68,8 @@ async function loginUser(body) {
     
     const jwtPayload = {
       user: user.firstName,
+      userLastName: user.lastName,
+      userId: user._id,
       email: user.email,
       is_admin: user.is_admin
     };
