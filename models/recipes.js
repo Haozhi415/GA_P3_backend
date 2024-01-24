@@ -159,12 +159,12 @@ async function deleteRecipe(id) {
 
 // Get all recipes created by a user.
 async function getUserRecipes(userId) {
-  const getUserRecipes = await daoRecipes.find({ user: userId });
+  const Recipes = await daoRecipes.find({ user: userId });
 
-  if (!getUserRecipes || getUserRecipes.length === 0) {
-    return (message = "User has not created any recipes.");
+  if (!Recipes || Recipes.length === 0) {
+    return {message: "User has not created any recipes.", Recipes: []};
   }
-  return getUserRecipes.map((recipe) => {
+  return Recipes.map((recipe) => {
     return {
       _id: recipe._id,
       user: recipe.user,
