@@ -86,12 +86,14 @@ async function getUserRecipes(req, res) {
     try {
         const userId = req.params.userId;
         const recipes = await modelRecipes.getUserRecipes(userId);
-        res.status(200).json(recipes);
+        res.status(200).json({recipes: recipes});
     } catch (error) {
         console.log(error);
         res.status(500).json({ errorMsg: error.message })
     }
 }
+
+
 
 
 
