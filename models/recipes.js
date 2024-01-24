@@ -164,6 +164,19 @@ async function getUserRecipes(userId) {
   if (!getUserRecipes || getUserRecipes.length === 0) {
     return (message = "User has not created any recipes.");
   }
-  return getUserRecipes;
+  return getUserRecipes.map((recipe) => {
+    return {
+      _id: recipe._id,
+      user: recipe.user,
+      title: recipe.title,
+      tags: recipe.tags,
+      ingredients: recipe.ingredients,
+      preptime: recipe.preptime,
+      instructions: recipe.instructions,
+      picture_url: recipe.picture_url,
+      difficulty: recipe.difficulty,
+      reviews: recipe.reviews,
+    };
+  });
 }
   
