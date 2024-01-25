@@ -11,7 +11,7 @@ router.get("/show/:recipeId", reviewsController.getRecipeReviews);
 router.get('/user/:userId', reviewsController.getUserReviews);
 
 // Get all reviews (admin user).
-router.get("/admin/show", reviewsController.getAllReviews);
+router.get("/admin/show", reviewsController.getAllReviews, securityMiddleware.checkPermission);
 
 // Create a review for a recipe.
 router.post("/create/:recipeId", reviewsController.createReview, securityMiddleware.checkPermission);
