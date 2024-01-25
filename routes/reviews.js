@@ -12,15 +12,15 @@ router.get("/show/:recipeId", reviewsController.getRecipeReviews);
 router.get('/user/:userId', reviewsController.getUserReviews);
 
 // Get all reviews (admin user).
-router.get("/admin/show", reviewsController.getAllReviews, securityMiddleware.checkPermission);
+router.get("/admin/show", securityMiddleware.checkPermission, reviewsController.getAllReviews);
 
 // Create a review for a recipe.
-router.post("/create/:recipeId", reviewsController.createReview, securityMiddleware.checkPermission);
+router.post("/create/:recipeId", securityMiddleware.checkLogin, reviewsController.createReview);
 
 // Update a review.
-router.patch("/update/:reviewId", reviewsController.updateReview, securityMiddleware.checkPermission);
+router.patch("/update/:reviewId", securityMiddleware.checkPermission, reviewsController.updateReview);
 
 // Delete a review.
-router.delete("/delete/:reviewId", reviewsController.deleteReview, securityMiddleware.checkPermission);
+router.delete("/delete/:reviewId", securityMiddleware.checkPermission, reviewsController.deleteReview);
 
 module.exports = router;
