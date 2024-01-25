@@ -8,7 +8,7 @@ var router = express.Router();
 router.get('/show', recipesController.getAllRecipes);
 
 // Get one recipe that matches the query.
-router.get('/show/:id', recipesController.getOneRecipe);
+router.get('/showone/:id', recipesController.getOneRecipe);
 
 // Get all recipes created by a user.
 router.get('/user/:userId', recipesController.getUserRecipes);
