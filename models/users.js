@@ -17,24 +17,28 @@ function getAllUsers(queryFields) {
 }
 
 async function getUser(id) {
-    try {
-        const user = await daoUsers.findById(id);
+  try {
+      const user = await daoUsers.findById(id);
 
-        return {
-            _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            password: user.password,
-            recipes: user.recipes,
-            bio: user.bio,
-            reviews: user.reviews,
-            favourites: user.favourites
-        }
-    } catch(err) {
-        console.log(err);
-        throw new Error(err.message || "An error occurred");
-    }
+      if (!user) {
+          throw new Error('User not found');
+      }
+
+      return {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          password: user.password,
+          recipes: user.recipes,
+          bio: user.bio,
+          reviews: user.reviews,
+          favourites: user.favourites
+      }
+  } catch(err) {
+      console.log(err);
+      throw new Error(err.message || "An error occurred");
+  }
 }
 
 async function getLoginDetails(queryFields) {
