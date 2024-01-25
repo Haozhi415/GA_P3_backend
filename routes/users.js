@@ -9,7 +9,7 @@ var router = express.Router();
 router.get('/show', usersController.getAllUsers);
 
 // Show particular user profile
-router.get('/show/:id', usersController.getUser);
+router.get('/showOne/:id', usersController.getUser);
 
 // User Login
 router.get("/login", usersController.getLoginDetails);
