@@ -14,10 +14,7 @@ const reviewSchema = new Schema(
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      // required: true, // should be true in future once set up
-      // default: function () {
-      //     // Assuming req.user contains the decoded user information
-      //     return req.user._id;
+      required: true,
     },
     userFirstName: {
       type: String,

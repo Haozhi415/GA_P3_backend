@@ -63,7 +63,7 @@ async function createReview(req, res) {
     }
 
     const review = await modelReviews.createReview(
-      userId, // userId is passed in the request body FOR TESTING ONLY
+      userId,
       req.params.recipeId,
       req.body,
       user
