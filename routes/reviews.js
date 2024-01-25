@@ -1,6 +1,7 @@
 var express = require("express");
 var reviewsController = require("../controllers/reviews");
 var router = express.Router();
+var securityMiddleware = require('../middlewares/security');
 
 /* base path: /reviews */
 
