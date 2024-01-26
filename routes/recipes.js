@@ -1,6 +1,7 @@
 var express = require('express');
 var recipesController = require('../controllers/recipes');
 var router = express.Router();
+var securityMiddleware = require('../middlewares/security');
 
 /* base path: /recipes */
 
@@ -11,16 +12,16 @@ router.get('/show', recipesController.getAllRecipes);
 router.get('/showone/:id', recipesController.getOneRecipe);
 
 // Get all recipes created by a user.
-router.get('/user/:userId', recipesController.getUserRecipes);
+router.get('/user/:userId', securityMiddleware.checkPermission, recipesController.getUserRecipes);
 
 // Create a recipe.
-router.post('/create', recipesController.createRecipe);
+router.post('/create',  securityMiddleware.checkLogin, recipesController.createRecipe);
 
 // Update a recipe.
-router.patch('/update/:id', recipesController.updateRecipe);
+router.patch('/update/:id', securityMiddleware.checkPermission, recipesController.updateRecipe);
 
 // Delete a recipe.
-router.delete('/delete/:id', recipesController.deleteRecipe);
+router.delete('/delete/:id', securityMiddleware.checkPermission, recipesController.deleteRecipe);
 
 
 
