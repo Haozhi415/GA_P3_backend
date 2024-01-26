@@ -12,16 +12,16 @@ router.get('/show', recipesController.getAllRecipes);
 router.get('/showone/:id', recipesController.getOneRecipe);
 
 // Get all recipes created by a user.
-router.get('/user/:userId', securityMiddleware.checkPermission, recipesController.getUserRecipes);
+router.get('/user/:userId', securityMiddleware.checkLogin, recipesController.getUserRecipes);
 
 // Create a recipe.
 router.post('/create', securityMiddleware.checkLogin, recipesController.createRecipe);
 
 // Update a recipe.
-router.patch('/update/:id', securityMiddleware.checkPermission, recipesController.updateRecipe);
+router.patch('/update/:id', securityMiddleware.checkLogin, recipesController.updateRecipe);
 
 // Delete a recipe.
-router.delete('/delete/:id', securityMiddleware.checkPermission, recipesController.deleteRecipe);
+router.delete('/delete/:id', securityMiddleware.checkLogin, recipesController.deleteRecipe);
 
 
 
