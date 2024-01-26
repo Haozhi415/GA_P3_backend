@@ -32,6 +32,7 @@ function verifyJWT(token) {
         // If valid token, decoded will be the token's entire payload
         // If invalid token, err will be set
         if (err) {
+            console.log("verifyJWT err:", err);
             return null;
         }
         return decoded;

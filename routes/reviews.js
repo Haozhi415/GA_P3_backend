@@ -18,9 +18,9 @@ router.get("/admin/show", securityMiddleware.checkPermission, reviewsController.
 router.post("/create/:recipeId", securityMiddleware.checkLogin, reviewsController.createReview);
 
 // Update a review.
-router.patch("/update/:reviewId", securityMiddleware.checkPermission, reviewsController.updateReview);
+router.patch("/update/:reviewId", securityMiddleware.checkLogin, reviewsController.updateReview);
 
 // Delete a review.
-router.delete("/delete/:reviewId", securityMiddleware.checkPermission, reviewsController.deleteReview);
+router.delete("/delete/:reviewId", securityMiddleware.checkLogin, reviewsController.deleteReview);
 
 module.exports = router;
