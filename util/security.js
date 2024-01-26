@@ -28,7 +28,7 @@ function getExpiry(token) {
 }
 
 function verifyJWT(token) {
-    const payload = jwt.verify(token, process.env.SECRET, function (err, decoded) {
+    const {payload} = jwt.verify(token, process.env.SECRET, function (err, decoded) {
         // If valid token, decoded will be the token's entire payload
         // If invalid token, err will be set
         if (err) {
@@ -36,4 +36,5 @@ function verifyJWT(token) {
         }
         return decoded;
     })
+    return payload;
 }

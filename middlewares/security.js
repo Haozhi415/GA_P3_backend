@@ -22,7 +22,7 @@ function checkJWT(req, res, next) {
 // check if they are logged in
 function checkLogin(req, res, next) {
     // Status code of 401 is Unauthorized
-    if (!req.user) return res.status(401).json("Unauthorized");
+    if (!req.body.user) return res.status(401).json("Unauthorized User");
     // A okay
     next();
 };
@@ -30,8 +30,8 @@ function checkLogin(req, res, next) {
 // check if they are owner or admin
 function checkPermission(req, res, next) {
     // Status code of 401 is Unauthorized
-    if (!req.user) return res.status(401).json("Unauthorized");
+    if (!req.user) return res.status(401).json("Unauthorized User");
     // if you are not the owner and you are not admin -> unauthorized
-    if (req.body.email != req.user.email && req.user.is_admin == false) return res.status(401).json("Unauthorized"); 
+    if (req.body.email != req.user.email && req.user.is_admin == false) return res.status(401).json("Unauthorized owner/admin"); 
     next();
 };

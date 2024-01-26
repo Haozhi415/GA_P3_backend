@@ -92,7 +92,8 @@ async function logoutUser(body) {
   if (!body.hasOwnProperty('email')) {
     return {success: false, error: "missing email"};
   }
-  daoUser.updateOne({"email": body.email}, {token: null, expire_at: null})
+  const res = await daoUsers.updateOne({"email": body.email}, {token: null, expire_at: null})
+  return {success: true, data: res}
 }
 
 async function createUser(body) {
