@@ -49,12 +49,12 @@ async function getAllRecipes(query) {
       // for pattern matching with strings.
       // $regex: term is using a regular expression to search for any instances of the variable term within
       // the title field. The $options: 'i' part makes the search case-insensitive.
-      // So if term was "Asian", it would match "Asian", "ASIAN", "asian", and so on.
+      // So if term was "Asian", it would match "Asian", "ASIAN", "asian", and so on in the
+      // title, tags, and ingredients fields.
       searchTerms.forEach((term) => {
         conditions.push({ title: { $regex: term, $options: "i" } });
         conditions.push({ tags: { $regex: term, $options: "i" } });
         conditions.push({ ingredients: { $regex: term, $options: "i" } });
-        // Add more fields as needed
       });
     }
 
