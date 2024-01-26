@@ -33,7 +33,8 @@ async function getUser(id) {
           recipes: user.recipes,
           bio: user.bio,
           reviews: user.reviews,
-          favourites: user.favourites
+          favourites: user.favourites,
+          profilePicUrl: user.profilePicUrl
       }
   } catch(err) {
       console.log(err);
