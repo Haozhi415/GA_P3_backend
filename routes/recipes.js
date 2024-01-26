@@ -15,7 +15,7 @@ router.get('/showone/:id', recipesController.getOneRecipe);
 router.get('/user/:userId', securityMiddleware.checkPermission, recipesController.getUserRecipes);
 
 // Create a recipe.
-router.post('/create',  securityMiddleware.checkLogin, recipesController.createRecipe);
+router.post('/create', securityMiddleware.checkLogin, recipesController.createRecipe);
 
 // Update a recipe.
 router.patch('/update/:id', securityMiddleware.checkPermission, recipesController.updateRecipe);
